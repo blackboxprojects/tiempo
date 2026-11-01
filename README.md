@@ -42,49 +42,6 @@ brew install --cask blackboxprojects/tiempo/tiempo
 
 To start tiempo when you log in, turn on **Launch at Login** from the gear menu.
 
-## Build from source
-
-Requires Xcode or the Xcode command-line tools.
-
-```bash
-./build.sh
-open build/tiempo.app
-```
-
-Copy `build/tiempo.app` to `/Applications` to keep it.
-
-## Make a release
-
-```bash
-./scripts/release.sh
-```
-
-This builds the app and packages it as `build/tiempo-<version>.dmg` (the version comes from `CFBundleShortVersionString` in `Info.plist`) and prints its SHA-256. Publish it with:
-
-```bash
-gh release create v<version> build/tiempo-<version>.dmg --title "tiempo <version>"
-```
-
-Then update `version` and `sha256` in the [Homebrew tap](https://github.com/blackboxprojects/homebrew-tiempo)'s `Casks/tiempo.rb`.
-
-## App icon
-
-The icon is drawn by `scripts/make-icon.swift`. To change it, edit that file and run:
-
-```bash
-./scripts/make-icon.sh
-```
-
-## Project layout
-
-| Path | What it holds |
-| --- | --- |
-| `Sources/tiempo/App.swift` | App entry point and the menu bar globe |
-| `Sources/tiempo/ClockStore.swift` | Cities, settings, sorting and the hour strip timing |
-| `Sources/tiempo/ClockPanel.swift` | The panel: city rows, hour strip, drag to reorder, bottom bar |
-| `Sources/tiempo/Clock.swift` | Time, date and offset formatting; colors and fonts |
-| `Sources/tiempo/CitySearch.swift` | The Add City search |
-
 ## Support
 
 If tiempo saves you a time zone headache, you can buy me a coffee:
