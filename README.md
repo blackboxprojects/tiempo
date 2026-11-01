@@ -86,3 +86,7 @@ If tiempo saves you a time zone headache, you can buy me a coffee:
 ## Credits
 
 The layout is inspired by the [World Time Buddy](https://www.worldtimebuddy.com/) clock widget. tiempo is an independent project, not affiliated with World Time Buddy.
+
+## License
+
+[MIT](LICENSE)
