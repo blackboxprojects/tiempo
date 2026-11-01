@@ -28,15 +28,17 @@ A Mac with Apple silicon (M1 or later) running macOS 14 Sonoma or later.
 
 ## Install
 
-1. Download `tiempo-<version>.zip` from the [latest release](https://github.com/blackboxprojects/tiempo/releases/latest).
-2. Unzip it and drag **tiempo** into your **Applications** folder.
-3. Open tiempo. The globe appears in your menu bar.
-
-**First launch:** tiempo isn't notarized by Apple, so macOS blocks it the first time. Open **System Settings → Privacy & Security**, scroll down to the message about tiempo, click **Open Anyway**, and confirm. You only do this once. If you prefer Terminal, this does the same:
+### Homebrew
 
 ```bash
-xattr -dr com.apple.quarantine /Applications/tiempo.app
+brew install --cask blackboxprojects/tiempo/tiempo
 ```
+
+### Download
+
+1. Download `tiempo-<version>.dmg` from the [latest release](https://github.com/blackboxprojects/tiempo/releases/latest) and open it.
+2. Drag **tiempo** onto the **Applications** shortcut, then open it from Applications. The globe appears in your menu bar.
+3. **First launch:** tiempo isn't notarized by Apple, so macOS blocks it the first time. Open **System Settings → Privacy & Security**, scroll to the message about tiempo, click **Open Anyway**, and confirm. You only do this once.
 
 To start tiempo when you log in, turn on **Launch at Login** from the gear menu.
 
@@ -57,7 +59,13 @@ Copy `build/tiempo.app` to `/Applications` to keep it.
 ./scripts/release.sh
 ```
 
-This builds the app and packages it as `build/tiempo-<version>.zip` (the version comes from `CFBundleShortVersionString` in `Info.plist`). On GitHub, open **Releases → Draft a new release**, create a tag such as `v1.0`, attach the zip, and publish.
+This builds the app and packages it as `build/tiempo-<version>.dmg` (the version comes from `CFBundleShortVersionString` in `Info.plist`) and prints its SHA-256. Publish it with:
+
+```bash
+gh release create v<version> build/tiempo-<version>.dmg --title "tiempo <version>"
+```
+
+Then update `version` and `sha256` in the [Homebrew tap](https://github.com/blackboxprojects/homebrew-tiempo)'s `Casks/tiempo.rb`.
 
 ## App icon
 
