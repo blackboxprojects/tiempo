@@ -107,11 +107,15 @@ private struct RightEdgePinner: NSViewRepresentable {
             }
         }
 
+        /// Pins the top edge just under the menu bar too, so the panel grows downward when
+        /// cities are added instead of drifting or settling mid-screen.
         private func pin(_ window: NSWindow) {
             guard let screen = window.screen ?? NSScreen.main else { return }
-            let x = screen.visibleFrame.maxX - window.frame.width - 6
-            if abs(window.frame.minX - x) > 0.5 {
-                window.setFrameOrigin(NSPoint(x: x, y: window.frame.minY))
+            let visible = screen.visibleFrame
+            let x = visible.maxX - window.frame.width - 6
+            let y = visible.maxY - window.frame.height - 4
+            if abs(window.frame.minX - x) > 0.5 || abs(window.frame.minY - y) > 0.5 {
+                window.setFrameOrigin(NSPoint(x: x, y: y))
             }
         }
     }
